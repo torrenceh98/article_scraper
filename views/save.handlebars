@@ -1,0 +1,51 @@
+<div>
+    <h3 class="card z-depth-3 center-align">Read the Latest news in Pro Basketball</h3>
+</div>
+
+<div class="row">
+    {{#each data}}
+      <div class="card-panel">
+        <h2>{{this.title}}</h2>
+        <button type="button" class="btn btn-info mr-2" id="unsave" data-id="{{this._id}}">Un-Save Article</button>
+        <button type="button" class="btn btn-info mr-2" id="delete" data-id="{{this._id}}">Delete Article</button>
+        {{!-- button to modal for make comment --}}
+        <button type="button" class="btn btn-secondary mr-2" id="makeComment" data-toggle="modal" data-target="#exampleModal" data-id="{{this._id}}">Make Comment</button>
+        {{!-- goes to article.handlebars --}}
+        <a href = "{{this.link}}" class="waves-effect waves-light btn pink lighten-1" id="btnSignUp">Read Article</a>
+      </div>
+    {{/each}}
+  
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Make a comment for {{this._id}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form action="/comment/{{data._id}}" method="POST"></form>
+        <div id="commentSpace" aria-placeholder="None notes for this article">
+<h3>here for comments</h3>
+        </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Type your comment here:</label>
+            <textarea class="form-control" id="comment"></textarea>
+          </div>
+      </div>
+
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-primary" id="saveComment">Save comment</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>     
+        
+        </form>
+
+    </div>
+  </div>
+</div>
